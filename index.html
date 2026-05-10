@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fairy Dust Creative | Portofoliu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="logo">Fairy Dust Creative</div>
+    <ul class="nav-links">
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#work">My Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+    <header class="hero">
+        <canvas id="gradient-canvas"></canvas>
+        
+        <div class="hero-content">
+            <h1>MARA PANAIT</h1>
+            <p class="bio-intro">Hi! I am a graphic designer in my free time. I have a modern approach to design, i like the urban aesthetic. </p>
+            <div class="skills-tags">
+                 <span class="skill-box ai">Adobe Illustrator</span>
+                 <span class="skill-box ps">Adobe Photoshop</span>
+                 <span class="skill-box id">Adobe InDesign</span>
+                 <span class="skill-box fr">Adobe Fresco</span>
+                 <span class="skill-box cc">CapCut</span>
+                 <span class="skill-box cv">Canva</span>
+            </div>
+        </div>
+    </header>
+
+
+
+    <section id="about" class="info-section">
+        <div class="card-container">
+            <div class="main-card">
+                <div class="slide active" id="slide1">
+                    <span class="category-tag">EDUCAȚIE</span>
+                    <div class="card-content">
+                        <p><strong>Universitatea Tehnologică din Cluj-Napoca</strong><br>(2025- 2029) Licență Anul 1 — Automatică si Informatica Aplicata in limba engleză</p>
+                        <p><strong>Curs acreditat de Skvot</strong><br>Graphic Design & Comunicare vizuală </p>
+                        <p><strong>Colegiul National "Ion Luca Caragiale"</strong><br>(2021-2025) Profil Matematica-Informatica Bilingv Engleză</p>
+                    </div>
+                </div>
+
+                <div class="slide" id="slide2">
+                    <span class="category-tag">Expertiza</span>
+                    <div class="card-content">
+                        <p><strong>BRANDING:</strong> Logo & Identitate vizuală</p>
+                        <p><strong>SOCIAL MEDIA:</strong> Postări one-slide, carusele, reels, story</p>
+                        <p><strong>MOTION:</strong> Animații 2D & Video editing</p>
+                        <p><strong>PRINT:</strong> Stickere, postere, bannere, etc.</p>
+                        <p><strong>DESIGN:</strong> Hanorace, Tricouri, Tricouri sintetice</p>
+                    </div>
+                </div>
+
+                <div class="slide" id="slide3">
+                    <span class="category-tag">Diverse</span>
+                    <div class="card-content">
+                        <p><strong>ENGLEZA</strong> Nivel C2</p>
+                        <p><strong>FRANCEZA</strong> Nivel A2</p>
+                        <p><strong>SOFT SKILLS</strong> comunicare, lucru în echipă</p>
+                        <p><strong>CARACTERISTICI</strong> determinata, creativă, adaptabilă</p>
+                        <p><strong>3 LUCRURI PREFERATE</strong> Dinozauri, gatitul, crearea de continut</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-nav">
+                <button onclick="changeSlide()"><i class="fas fa-arrow-left"></i></button>
+                <div class="dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span> 
+                </div>
+                <button onclick="changeSlide()"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-box">
+            <p><i class="fas fa-envelope"></i> pmara2006@exemplu.com</p>
+            <div class="social-links">
+                <a href="#">Instagram Personal</a>
+                <a href="#">Portofoliu Design</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <script>
+    let currentSlide = 0;
+
+    function changeSlide() {
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        if (slides.length === 0) return; // Siguranță
+
+        // Ștergem clasa active de peste tot
+        slides[currentSlide].classList.remove('active');
+        if(dots.length > 0) dots[currentSlide].classList.remove('active');
+
+        // Mergem la următorul
+        currentSlide = (currentSlide + 1) % slides.length;
+
+        // Punem clasa active pe noul slide
+        slides[currentSlide].classList.add('active');
+        if(dots.length > 0) dots[currentSlide].classList.add('active');
+        
+        console.log("Slide schimbat la indexul: " + currentSlide); // Verifică în consolă (F12) dacă merge
+    }
+</script>
+</body>
+</html>
