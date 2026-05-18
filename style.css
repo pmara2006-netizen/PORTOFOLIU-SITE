@@ -399,18 +399,52 @@ h1 {
 
 .carousel-btn.prev { left: 10px; }
 .carousel-btn.next { right: 10px; }
-/* ===== CLOTHING / MERCH ===== */
+
+/* ===== CLOTHING / MERCH (Varianta Premium Premium pentru Laptop) ===== */
 .clothes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 25px;
+    /* Setăm exact 2 coloane pe laptop */
+    grid-template-columns: repeat(2, 1fr);
+    /* Distanță generoasă și aerisită între cele două blocuri mari */
+    gap: 60px; 
+    margin: 40px auto 20px auto;
+    width: 100%;
+    max-width: 1100px; /* Aliniat perfect în centrul paginii tale */
+}
+
+.clothes-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03); /* Un fundal foarte discret întunecat pentru card */
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Margine fină elegantă */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clothes-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .clothes-item img {
     width: 100%;
-    height: 280px;
-    border-radius: 12px;
-    object-fit: cover;
+    height: 380px;             /* Înălțime fixă generoasă pe laptop */
+    object-fit: contain;       /* Protejează imprimeul tricoului ca să nu fie tăiat deloc */
+    background-color: #ffffff; /* Fundalul alb curat din spatele mock-up-ului */
+    border-radius: 12px;       /* Rotunjire fină la colțurile pozei */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Umbră adâncă, profesională */
+}
+
+.clothes-item p {
+    margin-top: 18px;          /* Spațiu aerisit între imagine și text */
+    font-size: 1.1rem;         /* Text puțin mai mare și mai lizibil */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--text-main);
+    text-align: center;
 }
 
 /* ===== PROMOTIONAL MATERIALS ===== */
@@ -623,9 +657,163 @@ h1 {
     border-color: var(--accent-purple);
 }
 
-/* ===== RESPONSIVE ===== */
+/* ==========================================================================
+   REPARARE INTEGRALĂ: SEPARARE CORECTĂ LAPTOP VS MOBIL
+   ========================================================================== */
 @media (max-width: 768px) {
-    h1 { font-size: 4rem; }
-    .main-card { padding: 30px; }
-    .card-content p { font-size: 1.1rem; }
+    
+    /* 1. Navigația și secțiunea Hero */
+    .top-nav {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        padding: 15px var(--space-sm);
+        position: relative; 
+    }
+    .nav-links {
+        margin-top: 10px;
+        gap: 20px;
+    }
+    .nav-links li {
+        margin-left: 0;
+    }
+    .hero {
+        height: auto;
+        padding: 60px var(--space-sm) 80px var(--space-sm);
+    }
+    h1 {
+        font-size: 2.8rem;
+        text-align: center;
+        letter-spacing: -1px;
+    }
+    .hero-content {
+        text-align: center;
+    }
+    .bio-intro {
+        font-size: 1.1rem;
+        text-align: center;
+        margin: 0 auto 25px auto;
+    }
+
+    /* 2. Izolăm regulile de carusel strict pentru ecranele mici */
+    .carousel {
+        padding: 20px 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important; /* Ascunde restul slide-urilor din exterior */
+        position: relative !important;
+    }
+
+    /* Banda interioară care culisează la click pe săgeți */
+    .carousel-track {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important; /* Menține slide-urile strict în linie orizontală */
+        width: 100% !important;
+        transition: transform 0.4s ease-in-out !important;
+    }
+
+    /* Fiecare slide ocupă exact ecranul telefonului, fără să se vadă celălalt */
+    .carousel-item {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        flex-shrink: 0 !important; /* Interzice comprimarea imaginilor */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 45px !important; /* Spațiu liber ca săgețile să nu acopere pozele */
+        box-sizing: border-box !important;
+    }
+
+    /* Anulăm layout-ul de grid pe mobil ca să nu spargă logica de carusel */
+    .clothes-grid, 
+    .drawings-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+    }
+
+    /* 3. Săgețile de control pe mobil */
+    .carousel-btn {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1rem !important;
+        background: rgba(5, 5, 7, 0.9) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 50% !important;
+        z-index: 10 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .carousel-btn.prev { left: 8px !important; }
+    .carousel-btn.next { right: 8px !important; }
+
+    /* 4. Redimensionare imagini în interiorul caruselelor de mobil */
+    
+    /* Schițe (Process) */
+    .progress-pair {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* Schița și rezultatul rămân pereche */
+        gap: 10px !important;
+        width: 100% !important;
+    }
+    .progress-step img {
+        height: auto !important;
+        max-height: 200px !important;
+        object-fit: contain !important;
+    }
+
+    /* Tricou & Hanorac pe Mobil */
+    .clothes-item img {
+        height: 240px !important;
+        width: 100% !important;
+        max-width: 260px !important;
+        object-fit: contain !important;
+        background-color: #ffffff !important; /* Fundal alb controlat doar pe mobil */
+        border-radius: 12px !important;
+    }
+    .clothes-item p {
+        margin-top: 10px;
+        font-size: 0.95rem;
+    }
+
+    /* Desene & Promoționale pe Mobil */
+    .drawing-item img,
+    .promo-item img {
+        max-height: 280px !important;
+        width: auto !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
+        border-radius: 12px !important;
+    }
+
+    /* 5. Subsol / Contact */
+    .contact-box p { 
+        font-size: 1.2rem; 
+        word-break: break-all; 
+    }
+    .social-links { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 12px; 
+        align-items: center; 
+    }
+    .social-links a { 
+        margin: 0; 
+        width: 100%; 
+        max-width: 280px; 
+        text-align: center; 
+    }
+}
+
+/* Fix pentru ecran mobil foarte îngust */
+@media (max-width: 400px) {
+    h1 { font-size: 2.1rem; }
+    .carousel-item { padding: 0 40px !important; }
+    .progress-step img { max-height: 160px !important; }
+    .clothes-item img { height: 200px !important; }
 }
